@@ -1,0 +1,21 @@
+[project]
+name = "swarm-mcp"
+version = "0.1.0"
+description = "A Model-Agnostic, Git-Sandboxed Multi-Agent Swarm MCP Server."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp",
+    "langgraph",
+    "litellm",
+    "pydantic",
+    "agentlightning",
+    "python-dotenv"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+swarm-mcp = "src.index:main"
