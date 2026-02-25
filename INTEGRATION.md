@@ -15,7 +15,7 @@ Since the Swarm is built in Python, you can trigger it directly from your termin
     3. Amazon Q will see the new branch/files and help you review the Swarm's work.
 
 ### Strategy B: Native MCP Hosts (Cursor, Windsurf, Claude Desktop)
-These modern AI tools natively support the `mcp-lightning-crew` server. 
+These modern AI tools natively support the `swarm-mcp` server. 
 - You simply add this server URL to their settings.
 - When you ask them to "delegate" a task, they invoke our Swarm directly.
 

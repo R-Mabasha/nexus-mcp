@@ -1,9 +1,9 @@
-# The Lightning Crew MCP Architect (IDEA)
+# The Swarm MCP Architect (IDEA)
 
 ## What is the Idea?
 We are building a highly capable, autonomous, and strictly safe coding extension using the Model Context Protocol (MCP). Traditional LLM coding agents often destroy files, get stuck in infinite logic loops, or struggle with context limits. 
 
-The Lightning Crew solves this by blending three distinct architectures into a single "Super Feasible" tool:
+The Swarm solves this by blending three distinct architectures into a single "Super Feasible" tool:
 1.  **Macro-Orchestration (LangGraph):** A rigid state machine that handles the overarching project plan, initiates testing, and enforces hard limits (like "Max Retries") so the swarm never gets stuck in a token-wasting loop.
 2.  **Micro-Orchestration (CrewAI):** A fluid team of conversational agents (e.g., a Senior Coder and a QA Reviewer) who debate, audit, and patch code collaboratively.
 3.  **Optimization (Agent Lightning):** A tracing layer that observes how the Swarm behaves and caches successful approaches.

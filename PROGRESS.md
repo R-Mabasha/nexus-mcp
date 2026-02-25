@@ -5,7 +5,7 @@ Everything conceptually planned for the MVP Architecture has been written into l
 ## 1. Setup & Integration (DONE)
 *   [x] Initialized the standard dependencies (`mcp`, `langgraph`, `crewai`, `litellm`, etc.)
 *   [x] Set up `src/index.py` for stdio streaming which acts as the core interface with IDEs like Cursor or Windsurf.
-*   [x] Set up `src/server.py` exposing the `delegate_to_lightning_crew` MCP tool with full argument schema parsing.
+*   [x] Set up `src/server.py` exposing the `delegate_to_swarm` MCP tool with full argument schema parsing.
 
 ## 2. Security & Guardrails (DONE)
 *   [x] **Git Isolation (`src/core/git_sandbox.py`)**: Automatically stashes user changes and checks out a sandboxed branch (`swarm-task-{uuid}`) so the host branch is completely separated from LLM generation.

@@ -1,4 +1,4 @@
-# Lightning-Crew MCP: Implementation TODOs
+# Swarm MCP: Implementation TODOs
 
 We have the entire architectural foundation built locally. Here is exactly how we are going to implement the final steps to make this production-ready:
 
@@ -10,7 +10,7 @@ We have the entire architectural foundation built locally. Here is exactly how w
 *   **What**: Hook the Swarm up to Cursor or Windsurf.
 *   **How**: In the IDE's MCP Configuration, add the exact path to this repository:
     ```json
-    "lightning-crew-mcp": {
+    "swarm-mcp": {
         "command": "python",
         "args": ["-m", "src.index"],
         "cwd": "C:/Multi-agent-orchestation"

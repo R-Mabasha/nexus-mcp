@@ -8,13 +8,13 @@ from src.swarm.graph import build_graph
 import logging
 logger = logging.getLogger(__name__)
 
-server = Server("lightning-crew-mcp")
+server = Server("swarm-mcp")
 
 @server.list_tools()
 async def list_tools() -> list[types.Tool]:
     return [
         types.Tool(
-            name="delegate_to_lightning_crew",
+            name="delegate_to_swarm",
             description="DELEGATE TASK: Use this tool to send a complex coding task to an autonomous agent swarm. By default, it isolates changes to a safe Git branch. Set 'isolate=False' to apply changes directly to the current branch/main.",
             inputSchema={
                 "type": "object",
@@ -31,7 +31,7 @@ async def list_tools() -> list[types.Tool]:
 
 @server.call_tool()
 async def call_tool(name: str, arguments: dict[str, Any]) -> list[types.TextContent]:
-    if name != "delegate_to_lightning_crew":
+    if name != "delegate_to_swarm":
         raise ValueError(f"Tool {name} not found")
 
     task = arguments["task"]
@@ -80,7 +80,7 @@ async def call_tool(name: str, arguments: dict[str, Any]) -> list[types.TextCont
                 g = Github(auth=auth)
                 repo = g.get_repo(repo_name)
                 pr = repo.create_pull(
-                    title=f"[Lightning-Crew] Auto-PR: {task_id}", 
+                    title=f"[Swarm-MCP] Auto-PR: {task_id}",
                     body=f"Automated PR from Swarm.\nStatus: {final_state.get('status')}", 
                     head=branch, 
                     base="main", 
