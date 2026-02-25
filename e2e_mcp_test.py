@@ -16,9 +16,9 @@ async def run_e2e_test():
     # Mocking the MCP Client tool request
     tool_name = "delegate_to_lightning_crew"
     arguments = {
-        "task": "Build a simple hello_world.py script and make sure it has a basic print statement.",
+        "task": "Analyze the codebase components inside src/core and src/swarm. Pay attention to how getting the LLM inside provider connects to Groq using litellm. Write a full 'ARCHITECTURE.md' file at the root tracking these metrics.",
         "target_dir": "C:/Multi-agent-orchestation",
-        "task_id": "e2e-local-validation-final-run"
+        "task_id": "codebase-documentation-final"
     }
     
     print(f"\n[Client] Sending Tool Request: {tool_name}")
