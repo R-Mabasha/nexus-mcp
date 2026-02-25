@@ -18,7 +18,8 @@ async def run_e2e_test():
     arguments = {
         "task": "Analyze the codebase components inside src/core and src/swarm. Pay attention to how getting the LLM inside provider connects to Groq using litellm. Write a full 'ARCHITECTURE.md' file at the root tracking these metrics.",
         "target_dir": "C:/Multi-agent-orchestation",
-        "task_id": "codebase-documentation-final"
+        "task_id": "codebase-documentation-direct",
+        "isolate": False
     }
     
     print(f"\n[Client] Sending Tool Request: {tool_name}")
