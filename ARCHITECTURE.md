@@ -1,29 +1,33 @@
 # Architecture Overview
-The codebase is organized into two primary directories: `src/core` and `src/swarm`. This documentation will outline the key components, their interactions, and the connection to Groq using Litellm.
+This document outlines the high-level architecture of the codebase, focusing on the components within `src/core` and `src/swarm`, and their connections to Groq using `litellm`.
 
-## src/core Components
-* **Provider**: Responsible for retrieving the LLM
-* **Groq Interface**: Handles communication with Groq using Litellm
-* **Utilities**: Miscellaneous helper functions
+## Core Components
+The `src/core` directory contains the following key components:
+* **Provider**: responsible for fetching and managing the Large Language Model (LLM)
+* **LLM Interface**: defines the interface for interacting with the LLM
 
-## src/swarm Components
-* **Swarm Manager**: Oversees the swarm functionality
-* **Node Interactions**: Manages interactions between nodes
-* **Data Processing**: Handles data processing within the swarm
+## Swarm Components
+The `src/swarm` directory contains the following key components:
+* **Swarm Manager**: orchestrates the swarm of nodes
+* **Node Agent**: runs on each node, responsible for executing tasks
 
-## LLM Connection to Groq
-The LLM is retrieved within the provider and connected to Groq using Litellm. The following sequence illustrates the connection process:
-1. The provider requests the LLM
-2. The LLM is retrieved and passed to the Groq interface
-3. The Groq interface uses Litellm to establish a connection to Groq
-4. The LLM is then used to interact with Groq
+## LLM Integration with Groq
+The LLM is integrated with Groq using the `litellm` library. The following steps outline the connection process:
+1. The **Provider** fetches the LLM model and loads it into memory.
+2. The **LLM Interface** is used to interact with the loaded LLM model.
+3. The **litellm** library is used to connect to Groq, allowing the LLM to be executed on the Groq hardware.
 
-## Metrics and Performance
+## Metrics and Monitoring
 The following metrics will be tracked:
-* **LLM Retrieval Time**: Time taken to retrieve the LLM
-* **Groq Connection Time**: Time taken to establish a connection to Groq
-* **Data Processing Time**: Time taken to process data within the swarm
-* **Node Interactions**: Number of interactions between nodes
+* **LLM model loading time**
+* **LLM inference time**
+* **Groq execution time**
+* **Node agent performance**
 
-## Future Development and Maintenance
-This architecture is designed to be flexible and adaptable to future changes and additions. As the codebase evolves, this documentation will be updated to reflect new components, interactions, and metrics.
+## Future Development
+This architecture is designed to be scalable and flexible, allowing for future additions and modifications as needed.
+
+## Maintenance and Updates
+This document will be updated regularly to reflect changes and improvements to the architecture.
+
+Note: This is a high-level overview, and further details may be added as needed.
