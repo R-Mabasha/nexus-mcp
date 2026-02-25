@@ -8,7 +8,7 @@ Everything conceptually planned for the MVP Architecture has been written into l
 *   [x] Set up `src/server.py` exposing the `delegate_to_swarm` MCP tool with full argument schema parsing.
 
 ## 2. Security & Guardrails (DONE)
-*   [x] **Git Isolation (`src/core/git_sandbox.py`)**: Automatically stashes user changes and checks out a sandboxed branch (`swarm-task-{uuid}`) so the host branch is completely separated from LLM generation.
+*   [x] **Git Isolation (`src/core/git_sandbox.py`)**: Automatically stashes user changes and checks out a sandboxed branch (`nexus-task-{uuid}`) so the host branch is completely separated from LLM generation.
 *   [x] **Safe FS Tools (`src/swarm/tools/fs.py`)**: Written AST codebase outliner and precision chunk editors that enforce path-locking (no directory traversal `../`).
 *   [x] **Terminal Logging (`src/swarm/tools/bash_safe.py`)**: Terminal access that natively filters out overly verbose `stdout` logs.
 

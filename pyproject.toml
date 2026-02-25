@@ -1,7 +1,7 @@
 [project]
-name = "swarm-mcp"
+name = "nexus-mcp"
 version = "0.1.0"
-description = "A Model-Agnostic, Git-Sandboxed Multi-Agent Swarm MCP Server."
+description = "A Model-Agnostic, Git-Sandboxed Multi-Agent Nexus MCP Server."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -18,4 +18,4 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project.scripts]
-swarm-mcp = "src.index:main"
+nexus-mcp = "src.index:main"

@@ -10,11 +10,11 @@ from src.core.lightning_optim import optimizer
 
 async def run_e2e_test():
     print("========================================")
-    print("🚀 INITIALIZING E2E MCP SWARM TEST")
+    print("🚀 INITIALIZING E2E MCP NEXUS TEST")
     print("========================================")
     
     # Mocking the MCP Client tool request
-    tool_name = "delegate_to_swarm"
+    tool_name = "delegate_to_nexus"
     arguments = {
         "task": "Perform a final open-source polish. 1. Use 'run_bash' to delete: 'hello_world.py', 'e2e_success.py', 'test_graph.py', 'plan.md', and 'mcp-swarm.log'. 2. Create a standard MIT 'LICENSE' file with current year and user 'Mabasha'. 3. Create a robust '.gitignore' that ignores '.venv/', '.env', '__pycache__/', and '.pytest_cache/'. 4. Verify that 'e2e_mcp_test.py' still runs correctly after the cleanup.",
         "target_dir": "C:/Multi-agent-orchestation",

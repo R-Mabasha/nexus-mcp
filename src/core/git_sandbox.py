@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 class GitSandbox:
     """
     Ensures that the Swarm never edits the user's active working branch
-    by forcing a git checkout into a temporary swarm feature branch.
+    by forcing a git checkout into a temporary nexus feature branch.
     """
     def __init__(self, target_dir: str):
         self.target_dir = Path(target_dir).resolve()
@@ -32,25 +32,25 @@ class GitSandbox:
 
     def enter_sandbox(self, task_id: str, isolate: bool = True) -> str:
         """
-        If isolate=True (default), creates and pushes the Swarm to an isolated branch.
+        If isolate=True (default), creates and pushes the Nexus to an isolated branch.
         If isolate=False, applies changes directly to the current branch.
         Returns the name of the active branch.
         """
         current_branch = self.run_cmd(["git", "branch", "--show-current"])
         
         if not isolate:
-            logger.info(f"Direct Mode enabled. Swarm will operate on the current branch: {current_branch}")
+            logger.info(f"Direct Mode enabled. Nexus will operate on the current branch: {current_branch}")
             return current_branch
 
-        branch_name = f"swarm-feature-{task_id}"
+        branch_name = f"nexus-feature-{task_id}"
         
         # Verify it's a git repo
         if not (self.target_dir / ".git").exists():
-             raise ValueError("The target directory is not a Git repository. To protect your file system, the Swarm MCP requires Git initialized projects.")
+             raise ValueError("The target directory is not a Git repository. To protect your file system, the Nexus MCP requires Git initialized projects.")
 
         logger.info(f"Host IDE is on branch: {current_branch}")
         try:
-            # Stash any current uncommitted work to prevent bleeding into the swarm branch
+            # Stash any current uncommitted work to prevent bleeding into the nexus branch
             self.run_cmd(["git", "stash"])
         except Exception as e:
             logger.warning(f"Git stash threw a warning/error (often safe if nothing to stash): {e}")
@@ -62,10 +62,10 @@ class GitSandbox:
             
             if branch_name in existing_branches:
                  self.run_cmd(["git", "checkout", branch_name])
-                 logger.info(f"Swarm resumed on existing branch: {branch_name}")
+                 logger.info(f"Nexus resumed on existing branch: {branch_name}")
             else:
                  self.run_cmd(["git", "checkout", "-b", branch_name])
-                 logger.info(f"Swarm successfully isolated to branch: {branch_name}")
+                 logger.info(f"Nexus successfully isolated to branch: {branch_name}")
             return branch_name
         except Exception as e:
             logger.error(f"Failed to isolate or resume branch: {e}")
@@ -73,7 +73,7 @@ class GitSandbox:
             
     def prepare_pr_handoff(self) -> str:
         """
-        Gathers the diff of what the swarm achieved to send back to the MCP Client
+        Gathers the diff of what the nexus achieved to send back to the MCP Client
         """
         diff = self.run_cmd(["git", "diff", "HEAD"])
         return diff

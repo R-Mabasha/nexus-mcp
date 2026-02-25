@@ -2,8 +2,8 @@ import logging
 from typing import Dict
 from litellm import completion
 from src.llm.provider import get_llm
-from src.swarm.state import SwarmState
-from src.swarm.nodes.crew_executor import execute_crew
+from src.nexus.state import SwarmState
+from src.nexus.nodes.crew_executor import execute_crew
 
 logger = logging.getLogger(__name__)
 

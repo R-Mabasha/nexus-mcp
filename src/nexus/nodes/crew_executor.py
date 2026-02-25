@@ -1,8 +1,8 @@
 import logging
 import json
 from litellm import completion
-from src.swarm.tools.fs import SandboxedFS
-from src.swarm.tools.bash_safe import SafeBash
+from src.nexus.tools.fs import SandboxedFS
+from src.nexus.tools.bash_safe import SafeBash
 from src.core.lightning_optim import optimizer
 from src.llm.provider import get_llm
 

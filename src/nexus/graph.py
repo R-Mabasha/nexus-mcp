@@ -1,6 +1,6 @@
 from langgraph.graph import StateGraph, START, END
-from src.swarm.state import SwarmState
-from src.swarm.nodes.macro import plan_node, crew_node, verify_node, escalate_node
+from src.nexus.state import SwarmState
+from src.nexus.nodes.macro import plan_node, crew_node, verify_node, escalate_node
 
 MAX_RETRIES = 3
 

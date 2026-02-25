@@ -3,19 +3,19 @@ import mcp.types as types
 from typing import Any
 
 from src.core.git_sandbox import GitSandbox
-from src.swarm.graph import build_graph
+from src.nexus.graph import build_graph
 
 import logging
 logger = logging.getLogger(__name__)
 
-server = Server("swarm-mcp")
+server = Server("nexus-mcp")
 
 @server.list_tools()
 async def list_tools() -> list[types.Tool]:
     return [
         types.Tool(
-            name="delegate_to_swarm",
-            description="DELEGATE TASK: Use this tool to send a complex coding task to an autonomous agent swarm. By default, it isolates changes to a safe Git branch. Set 'isolate=False' to apply changes directly to the current branch/main.",
+            name="delegate_to_nexus",
+            description="DELEGATE TASK: Use this tool to send a complex coding task to an autonomous agent nexus. By default, it isolates changes to a safe Git branch. Set 'isolate=False' to apply changes directly to the current branch/main.",
             inputSchema={
                 "type": "object",
                 "properties": {
@@ -31,7 +31,7 @@ async def list_tools() -> list[types.Tool]:
 
 @server.call_tool()
 async def call_tool(name: str, arguments: dict[str, Any]) -> list[types.TextContent]:
-    if name != "delegate_to_swarm":
+    if name != "delegate_to_nexus":
         raise ValueError(f"Tool {name} not found")
 
     task = arguments["task"]
@@ -80,8 +80,8 @@ async def call_tool(name: str, arguments: dict[str, Any]) -> list[types.TextCont
                 g = Github(auth=auth)
                 repo = g.get_repo(repo_name)
                 pr = repo.create_pull(
-                    title=f"[Swarm-MCP] Auto-PR: {task_id}",
-                    body=f"Automated PR from Swarm.\nStatus: {final_state.get('status')}", 
+                    title=f"[Nexus-MCP] Auto-PR: {task_id}",
+                    body=f"Automated PR from Nexus.\nStatus: {final_state.get('status')}", 
                     head=branch, 
                     base="main", 
                     draft=True
@@ -98,7 +98,7 @@ async def call_tool(name: str, arguments: dict[str, Any]) -> list[types.TextCont
     escalation_notes = final_state.get('verification_errors', '')
     
     message = (
-        f"Task Complete. Swarm cleanly isolated to branch: '{branch}'.\n\n"
+        f"Task Complete. Nexus cleanly isolated to branch: '{branch}'.\n\n"
         f"Final Architecture Status: {final_status}\n"
         f"Escalation Notes / Errors: {escalation_notes}\n\n"
         f"--- GitHub DevOps Automation ---\n{pr_link}\n\n"

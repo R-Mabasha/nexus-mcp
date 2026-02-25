@@ -1,6 +1,6 @@
-# Guide: Hosting & Open-Sourcing your Swarm MCP
+# Guide: Hosting & Open-Sourcing your Nexus MCP
 
-This document outlines the professional steps to share your Swarm MCP with the community and integrate it with other IDEs.
+This document outlines the professional steps to share your Nexus MCP with the community and integrate it with other IDEs.
 
 ## 1. Professional Open-Sourcing (GitHub)
 
@@ -19,7 +19,7 @@ Ensure you have the following essential files:
 
 ## 2. Cross-IDE Integration
 
-The beauty of the Model Context Protocol (MCP) is its **standardization**. Any IDE that supports MCP can use this swarm.
+The beauty of the Model Context Protocol (MCP) is its **standardization**. Any IDE that supports MCP can use this nexus.
 
 ### Known Supported IDEs:
 1. **Cursor**: The leading AI code editor. Supports MCP via the "Features" tab.
@@ -38,4 +38,4 @@ If you don't want users to run Python locally, you can host the MCP as a **Remot
 
 ## 4. Branding & Growth
 - **Create a Mascot**: Elite agents (like Cline/Kilo) have recognizable icons.
-- **Showcase Videos**: Record a screen-recording of the Swarm solving a complex 5-file bug autonomously.
+- **Showcase Videos**: Record a screen-recording of the Nexus solving a complex 5-file bug autonomously.

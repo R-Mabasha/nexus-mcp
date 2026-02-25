@@ -1,6 +1,6 @@
 from src.llm.provider import generate_swarm_response
-from src.swarm.state import SwarmState
-from src.swarm.tools.fs import SandboxedFS
+from src.nexus.state import SwarmState
+from src.nexus.tools.fs import SandboxedFS
 
 def qa_node(state: SwarmState) -> dict:
     """

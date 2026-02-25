@@ -1,6 +1,6 @@
 import json
 from src.llm.provider import generate_swarm_response
-from src.swarm.state import SwarmState
+from src.nexus.state import SwarmState
 
 def planner_node(state: SwarmState) -> dict:
     """

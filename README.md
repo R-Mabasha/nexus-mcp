@@ -1,6 +1,6 @@
-# 🚀 Swarm MCP: Multi-Orchestrator Agent Swarm
+# 🚀 Nexus MCP: Multi-Orchestrator Agent Nexus
 
-The **Swarm MCP** is a high-performance, model-agnostic coding server designed to execute complex, multi-agent tasks on your local codebase. It combines **LangGraph** (Macro-Orchestration) and **LiteLLM** (Micro-Orchestration) to perform surgical code modifications with extreme reliability.
+The **Nexus MCP** is a high-performance, model-agnostic coding server designed to execute complex, multi-agent tasks on your local codebase. It combines **LangGraph** (Macro-Orchestration) and **LiteLLM** (Micro-Orchestration) to perform surgical code modifications with extreme reliability.
 
 ---
 
@@ -44,7 +44,7 @@ python src/server.py
 ### Cursor / Windsurf
 1. Open **Settings** -> **MCP**.
 2. Add a new server:
-   - **Name**: `Swarm-MCP`
+   - **Name**: `Nexus-MCP`
    - **Type**: `command`
    - **Command**: `python c:/absolute/path/to/src/server.py`
 
@@ -53,7 +53,7 @@ Add the following to your `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "swarm-mcp": {
+    "nexus-mcp": {
       "command": "python",
       "args": ["c:/absolute/path/to/src/server.py"]
     }
@@ -72,7 +72,7 @@ Push this repository to GitHub. Ensure `.env` is in `.gitignore` to protect your
 Register your MCP on [Smithery](https://smithery.ai) to make it searchable by the global MCP community.
 
 ### 3. PyPI (Coming Soon)
-We recommend distributing as a Python package for `pip install swarm-mcp`.
+We recommend distributing as a Python package for `pip install nexus-mcp`.
 
 ---
 
