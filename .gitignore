@@ -2,3 +2,14 @@
 .env
 __pycache__/
 .pytest_cache/
+
+# Nexus specific
+nexus-mcp.log
+nexus-feature-*
+
+# Internal Personal Planning Files
+IDEA.md
+INTEGRATION.md
+ARCHITECTURE.md
+PROGRESS.md
+TODO.md
