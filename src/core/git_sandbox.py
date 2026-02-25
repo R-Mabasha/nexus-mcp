@@ -30,18 +30,24 @@ class GitSandbox:
             logger.error(f"Git Sandbox Command Failed: {cmd} -> {e.stderr}")
             raise RuntimeError(f"Git constraint error: {e.stderr}")
 
-    def enter_sandbox(self, task_id: str) -> str:
+    def enter_sandbox(self, task_id: str, isolate: bool = True) -> str:
         """
-        Creates and pushes the Swarm to an isolated branch.
-        Returns the name of the new branch.
+        If isolate=True (default), creates and pushes the Swarm to an isolated branch.
+        If isolate=False, applies changes directly to the current branch.
+        Returns the name of the active branch.
         """
+        current_branch = self.run_cmd(["git", "branch", "--show-current"])
+        
+        if not isolate:
+            logger.info(f"Direct Mode enabled. Swarm will operate on the current branch: {current_branch}")
+            return current_branch
+
         branch_name = f"swarm-feature-{task_id}"
         
         # Verify it's a git repo
         if not (self.target_dir / ".git").exists():
              raise ValueError("The target directory is not a Git repository. To protect your file system, the Swarm MCP requires Git initialized projects.")
 
-        current_branch = self.run_cmd(["git", "branch", "--show-current"])
         logger.info(f"Host IDE is on branch: {current_branch}")
         try:
             # Stash any current uncommitted work to prevent bleeding into the swarm branch
@@ -50,15 +56,20 @@ class GitSandbox:
             logger.warning(f"Git stash threw a warning/error (often safe if nothing to stash): {e}")
 
         try:
-            # Try to create a new branch based on the current state
-            self.run_cmd(["git", "checkout", "-b", branch_name])
-            logger.info(f"Swarm successfully isolated to branch: {branch_name}")
+            # Check if branch exists reliably
+            branches_raw = self.run_cmd(["git", "branch"])
+            existing_branches = [b.strip().replace("* ", "") for b in branches_raw.split("\n") if b.strip()]
+            
+            if branch_name in existing_branches:
+                 self.run_cmd(["git", "checkout", branch_name])
+                 logger.info(f"Swarm resumed on existing branch: {branch_name}")
+            else:
+                 self.run_cmd(["git", "checkout", "-b", branch_name])
+                 logger.info(f"Swarm successfully isolated to branch: {branch_name}")
             return branch_name
-        except RuntimeError:
-            # If the branch already exists, just check it out
-            self.run_cmd(["git", "checkout", branch_name])
-            logger.info(f"Swarm resumed on existing branch: {branch_name}")
-            return branch_name
+        except Exception as e:
+            logger.error(f"Failed to isolate or resume branch: {e}")
+            return current_branch
             
     def prepare_pr_handoff(self) -> str:
         """

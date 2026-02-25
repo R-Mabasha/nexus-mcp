@@ -15,13 +15,14 @@ async def list_tools() -> list[types.Tool]:
     return [
         types.Tool(
             name="delegate_to_lightning_crew",
-            description="Delegates a highly-complex coding task to a multi-orchestrator, Git-sandboxed agent swarm. They will modify files directly on an isolated branch and orchestrate through LangGraph and CrewAI.",
+            description="DELEGATE TASK: Use this tool to send a complex coding task to an autonomous agent swarm. By default, it isolates changes to a safe Git branch. Set 'isolate=False' to apply changes directly to the current branch/main.",
             inputSchema={
                 "type": "object",
                 "properties": {
                     "task": {"type": "string", "description": "The complex task description."},
-                    "target_dir": {"type": "string", "description": "The absolute path to the root of the project to modify."},
-                    "task_id": {"type": "string", "description": "A unique slug, like 'bugfix-login'."}
+                    "target_dir": {"type": "string", "description": "Absolute path to the project root."},
+                    "task_id": {"type": "string", "description": "Unique slug for the task."},
+                    "isolate": {"type": "boolean", "description": "Defaults to True. If False, modifications happen directly on the active branch without stashing.", "default": True}
                 },
                 "required": ["task", "target_dir", "task_id"]
             }
@@ -36,12 +37,13 @@ async def call_tool(name: str, arguments: dict[str, Any]) -> list[types.TextCont
     task = arguments["task"]
     target_dir = arguments["target_dir"]
     task_id = arguments["task_id"]
+    isolate = arguments.get("isolate", True)
     
-    logger.info(f"Received Delegation for Task: {task_id}")
+    logger.info(f"Received Delegation for Task: {task_id} (Isolate: {isolate})")
     
-    # 1. Absolute Isolation
+    # 1. Absolute Isolation (Optional)
     sandbox = GitSandbox(target_dir)
-    branch = sandbox.enter_sandbox(task_id)
+    branch = sandbox.enter_sandbox(task_id, isolate=isolate)
     
     # 2. Multi-Orchestrator Invocation
     graph = build_graph()
